@@ -1,3 +1,54 @@
+import numpy as np
+import random
+
+def get_matrix_input():
+    """Запрашивает у пользователя размерность и элементы матрицы."""
+    while True:
+        try:
+            rows = int(input("Введите количество строк: "))
+            cols = int(input("Введите количество столбцов: "))
+            if rows <= 0 or cols <= 0:
+                raise ValueError("Размерность должна быть положительным числом.")
+            break
+        except ValueError as e:
+            print(f"Ошибка: {e}")
+
+    choice = input(
+        "Хотите ввести элементы вручную или сгенерировать их?: "
+        "\n1. Ручной ввод"
+        "\n2. Генерация"
+        "\nВвод:"
+                   ).strip().lower()
+    if choice == '1':
+        print("Введите элементы матрицы построчно, разделяя пробелами:")
+        matrix = []
+        for i in range(rows):
+            while True:
+                try:
+                    row = list(map(int, input(f"Строка {i + 1}: ").split()))
+                    if len(row) != cols:
+                        raise ValueError(f"Должно быть {cols} элементов.")
+                    matrix.append(row)
+                    break
+                except ValueError as e:
+                    print(f"Ошибка: {e}")
+        return np.array(matrix)
+    elif choice == '2':
+        while True:
+            try:
+                min_val = int(input("Введите минимальное значение для генерации: "))
+                max_val = int(input("Введите максимальное значение для генерации: "))
+                if min_val > max_val:
+                    raise ValueError("Минимальное значение не может быть больше максимального.")
+                break
+            except ValueError as e:
+                print(f"Ошибка: {e}")
+        matrix = np.random.randint(min_val, max_val + 1, size=(rows, cols))
+        print("Сгенерированная матрица:")
+        print(matrix)
+        return matrix
+    else:
+        print("Неверные входные значения!")
 
 
 
