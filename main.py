@@ -63,16 +63,21 @@ def find_three_largest(matrix):
     flat = matrix.flatten()
     return sorted(flat, reverse=True)[:3]
 
+def sum_main_diagonal(matrix):
+    return np.trace(matrix)
 
+def sum_secondary_diagonal(matrix):
+    flipped = np.fliplr(matrix)
+    return np.trace(flipped)
 
-
-
-
-
-
-
-
-
+def sum_even_index_elements(matrix):
+    rows, cols = matrix.shape
+    total = 0
+    for i in range(rows):
+        for j in range(cols):
+            if (i + j) % 2 == 0:
+                total += matrix[i, j]
+    return total
 
 
 def main():
