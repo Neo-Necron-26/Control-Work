@@ -79,6 +79,8 @@ def sum_even_index_elements(matrix):
                 total += matrix[i, j]
     return total
 
+def reflect_matrix_vertically(matrix):
+    return np.flip(matrix, axis=1)
 
 def main():
     print("Добро пожаловать в программу для работы с двумерными массивами!")
