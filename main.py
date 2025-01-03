@@ -50,12 +50,18 @@ def get_matrix_input():
     else:
         print("Неверные входные значения!")
 
+def compare_matrices(matrix1, matrix2):
+    return np.array_equal(matrix1, matrix2)
+
 def find_element(matrix, value):
     result = np.where(matrix == value)
     if result[0].size > 0:
         return [(int(row), int(col)) for row, col in zip(result[0], result[1])]
     return [(-1, -1)]
 
+def find_three_largest(matrix):
+    flat = matrix.flatten()
+    return sorted(flat, reverse=True)[:3]
 
 
 
